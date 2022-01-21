@@ -36,11 +36,7 @@ const Progress = ({ step, steps, height }: Progress) => {
           const newWidth = e.nativeEvent.layout.width;
           setWidth(newWidth);
         }}
-        style={{ 
-          height, 
-          borderRadius: height,
-          overflow: 'hidden'
-        }}
+        style={[styles.progressContainer, { height, borderRadius: height }]}
       >
         <Animated.View
           style={[
@@ -66,7 +62,7 @@ export default function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((index + 1) % (10 + 1));
-    }, 500)
+    }, 1000)
 
     return () => {
       clearInterval(interval);
@@ -75,7 +71,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* <StatusBar hidden /> */}
+      <StatusBar hidden />
       <Progress step={index} steps={10} height={20} />
     </View>
   );
@@ -92,9 +88,6 @@ const styles = StyleSheet.create({
   progressContainer: {
     backgroundColor: "rgba(0,0,0,0.1)",
     overflow: "hidden",
-  },
-  progressView: {
-    width: "100%",
   },
   stepsText: {
     fontSize: 12,
